@@ -1,0 +1,32 @@
+- orders_of_magnitude:	#name of prefix : order of magnitude coefficient
+	atto: -18
+	femto: -15
+	pico: -12
+	nano: -9
+	micro: -6
+	milli: -3
+	centi: -2
+	deci: -1
+	deca: +1
+	hecto: +2
+	kilo: +3
+	mega: +6
+	giga: +9
+	tera: +12
+	peta: +15
+	exa: +18
+- length: 	#name of unit : conversion factor to meters
+	meter: 1
+	meters: 1
+- time:		#name of unit : conversion factor to seconds
+	seconds: 1
+	second: 1
+	minute: 60
+	minutes: 60
+	hour: 3600
+	hours: 3600
+- weight:	#name of unit : conversion factor to kilogram
+	gram: 1E-3
+	grams: 1E-3
+	gramme: 1E-3
+	grammes: 1E-3
