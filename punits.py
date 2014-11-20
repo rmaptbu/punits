@@ -13,13 +13,20 @@ class punit(object):
 		self.units_dict=yaml.load(open('config.yml'))['units']
 
 	def unit_conversion(self):
+		#scan for prefixes, adjust coefficient and remove prefix
+		for key in self.prefixes_dict.keys():
+			if key in self.unit:
+				self.coeff*=self.prefixes_dict[key]
+				self.unit=self.unit.replace(key,'')
+	
+		found_match=False
 		for unit_type in self.units_dict:
 			for unit in self.units_dict[unit_type]:
-				exact_match += self.unit == unit
-				if exact_match:
+				if self.unit == unit:
 					self.coeff*=self.units_dict[unit_type][unit]
 					self.unit=unit_type
-		if not exact_match:
+					found_match=True				
+		if not found_match:
 			raise ValueError("Unit not found")
 		
-a=punit(1,'hour')
+a=punit(1,'kilometer')

@@ -1,33 +1,35 @@
 prefix:  #name of prefix : order of magnitude coefficient
-    atto: -18
-    femto: -15
-    pico: -12
-    nano: -9
-    micro: -6
-    milli: -3
-    centi: -2
-    deci: -1
-    deca: 1
-    hecto: 2
-    kilo: 3
-    mega: 6
-    giga: 9
-    tera: 12
-    peta: 15
-    exa: 18
-units:
-    m:   #name of unit : conversion factor to meters
+    atto: 1.0E-18
+    femto: 1e-15
+    pico: 1.0E-12
+    nano: 1.0E-9
+    micro: 1.0E-6
+    milli: 1.0E-3
+    centi: 1.0E-2
+    deci: 1.0E-1
+    deca: 1.0E+1
+    hecto: 1.0E+2
+    kilo: 1.0E+3
+    mega: 1.0E+6
+    giga: 1.0E+9
+    tera: 1.0E+12
+    peta: 1.0E+15
+    exa: 1.0E+18
+units: #name of unit : conversion factor to meters
+    m:
         meter: 1
         meters: 1
-    s:     #name of unit : conversion factor to seconds
+    s:
         seconds: 1
         second: 1
         minute: 60
         minutes: 60
         hour: 3600
         hours: 3600
-    kg:   #name of unit : conversion factor to kilogram
-        gram: 1E-3
-        grams: 1E-3
-        gramme: 1E-3
-        grammes: 1E-3
+    kg:
+        gram: 1.0E-3
+        grams: 1.0E-3
+        gramme: 1.0E-3
+        grammes: 1.0E-3
+    kg,m(2),s(-2):
+        Joules: 1
