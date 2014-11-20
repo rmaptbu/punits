@@ -18,7 +18,9 @@ class punit(object):
 			if key in self.unit:
 				self.coeff*=self.prefixes_dict[key]
 				self.unit=self.unit.replace(key,'')
-	
+				break
+				
+		#scan if unit is in unit dict, rename unit (SI) and adjust coefficient
 		found_match=False
 		for unit_type in self.units_dict:
 			for unit in self.units_dict[unit_type]:
@@ -28,5 +30,12 @@ class punit(object):
 					found_match=True				
 		if not found_match:
 			raise ValueError("Unit not found")
+			
+	def __eq__(self,other):
+		if type(other)==punit:
+			if self.coeff==other.coeff and self.unit==other.unit:
+				return True
+			else: return False
+		else: raise ValueError("can only compare punit with punit")
 		
 a=punit(1,'kilometer')
