@@ -1,9 +1,9 @@
 class punit(object):
 	def __init__(self,coeff,unit=0):
 		self.coeff=coeff
-		self.import_config()
 		if unit !=0:
 			self.unit=unit
+			self.import_config()
 			self.unit_conversion()
 			
 	def import_config(self):
@@ -31,6 +31,16 @@ class punit(object):
 		if not found_match:
 			raise ValueError("Unit not found")
 			
+		#transform string of self.unit into dictionary {SI:exponent}
+		import re
+		self.unit=self.unit.split(',')
+		for token in self.unit:
+			unit=re.match('\w*', token)
+			exponent=re.match('\(.*\)',token)
+			print token
+			if exponent:
+				print unit.group(), 'abc', exponent.group()
+			
 	def __eq__(self,other):
 		if type(other)==punit:
 			if self.coeff==other.coeff and self.unit==other.unit:
@@ -38,4 +48,4 @@ class punit(object):
 			else: return False
 		else: raise ValueError("can only compare punit with punit")
 		
-a=punit(1,'kilometer')
+a=punit(1,'joule')
