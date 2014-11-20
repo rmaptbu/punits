@@ -13,10 +13,13 @@ class punit(object):
 		self.units_dict=yaml.load(open('config.yml'))['units']
 
 	def unit_conversion(self):
-		import re
 		for unit_type in self.units_dict:
 			for unit in self.units_dict[unit_type]:
-				match=re.search(self.unit, unit)
-				print match, unit, unit_type
+				exact_match += self.unit == unit
+				if exact_match:
+					self.coeff*=self.units_dict[unit_type][unit]
+					self.unit=unit_type
+		if not exact_match:
+			raise ValueError("Unit not found")
 		
-a=punit(1,'meter')
+a=punit(1,'hour')
