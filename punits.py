@@ -36,7 +36,7 @@ class punit(object):
 		self.unit=self.unit.split(',')
 		for token in self.unit:
 			unit=re.match(r'\w*', token)
-			exponent=re.search(r'[\(([+-]?[0-9]+)\)]?',token)
+			exponent=re.search(r'\(([+-]?[0-9]+)\)',token)
 			print token
 			if exponent:
 				print unit.group(), 'abc', exponent.group(1)
