@@ -55,8 +55,11 @@ class punit(object):
 		if type(other)!=punit:
 			other=punit(other)
 		result=punit(1)
-		all_units=set(self.unit.keys()).union(set(other.unit.keys()))
-		common_units=set(self.unit.keys()).intersection(set(other.unit.keys()))
+		#define sets of units of input to add together the dictionaries
+		first_units=set(self.unit.keys())
+		second_units=set(other.unit.keys())
+		all_units=first_units.union(second_units)
+		common_units=first_units.intersection(second_units)
 		for key in all_units:
 			if key in common_units:
 				result.unit[key]=self.unit[key]+other.unit[key]
@@ -65,6 +68,15 @@ class punit(object):
 			elif key in other.unit.keys():
 				result.unit[key]=other.unit[key]
 		result.coeff=self.coeff*other.coeff
+		return result
+		
+	def __add__(self,other):
+		if type(other)!=punit:
+			other=punit(other)
+		if set(self.unit.keys()) == set(other.unit.keys()):
+			result=self
+			result.coeff=self.coeff+other.coeff
+		else: raise ValueError("can not add different units together")
 		return result
 		
 a=punit(2,'joules')

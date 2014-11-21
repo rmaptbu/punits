@@ -15,7 +15,7 @@ prefix:  #name of prefix : order of magnitude coefficient
     tera: 1.0E+12
     peta: 1.0E+15
     exa: 1.0E+18
-units: #name of unit : conversion factor to meters
+units: #name of unit : conversion factor to SI units
     m:
         meter: 1
         meters: 1
