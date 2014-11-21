@@ -35,11 +35,11 @@ class punit(object):
 		import re
 		self.unit=self.unit.split(',')
 		for token in self.unit:
-			unit=re.match('\w*', token)
-			exponent=re.match('\(.*\)',token)
+			unit=re.match(r'\w*', token)
+			exponent=re.search(r'\(([+-]?[0-9]+)\)',token)
 			print token
 			if exponent:
-				print unit.group(), 'abc', exponent.group()
+				print unit.group(), 'abc', exponent.group(1)
 			
 	def __eq__(self,other):
 		if type(other)==punit:
