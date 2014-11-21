@@ -33,13 +33,16 @@ class punit(object):
 			
 		#transform string of self.unit into dictionary {SI:exponent}
 		import re
-		self.unit=self.unit.split(',')
+		self.unit=self.unit.split(',') #split string into tokens
+		unit_dict={}
 		for token in self.unit:
 			unit=re.match(r'\w*', token)
 			exponent=re.search(r'\(([+-]?[0-9]+)\)',token)
-			print token
-			if exponent:
-				print unit.group(), 'abc', exponent.group(1)
+			if not exponent: exponent = 1
+			else: exponent = float(exponent.group(1))
+			unit_dict[unit.group()]=exponent #fill dictionary with SI units and exponents
+		self.unit=unit_dict
+
 			
 	def __eq__(self,other):
 		if type(other)==punit:
@@ -47,5 +50,7 @@ class punit(object):
 				return True
 			else: return False
 		else: raise ValueError("can only compare punit with punit")
+		
+	
 		
 a=punit(1,'joule')
