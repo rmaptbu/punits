@@ -101,7 +101,3 @@ class punit(object):
 		result.unit=self.unit	
 		return result
 		
-a=punit(2,'joules')
-b=punit(3,'seconds')
-print b.unit
-print a*b
