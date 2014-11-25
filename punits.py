@@ -60,6 +60,7 @@ class punit(object):
 				if other.unit[key]!=0: return False
 			else: raise LookupError("not able to find mismatched units")
 		if coeff_match: return True
+		else: return False
 
 	def __mul__(self,other):
 		if type(other)!=punit:
@@ -97,7 +98,7 @@ class punit(object):
 				if other.unit[key]!=0 :
 					raise ValueError ("can not add different units together")	
 			else: raise LookupError("not able to find mismatched units")
-		result.units=self.units	
+		result.unit=self.unit	
 		return result
 		
 a=punit(2,'joules')

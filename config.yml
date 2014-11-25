@@ -34,3 +34,6 @@ units: #name of unit : conversion factor to SI units
     kg,m(2),s(-2):
         joule: 1
         joules: 1
+    kg,m(2),s(-3):
+        watts: 1
+        watt: 1
