@@ -4,10 +4,12 @@ import nose.tools as ns
 def test_unit_conversion():
 	length1=punit(1,'millimeter')
 	length2=punit(1E-6, 'kilometer')
-	ns.assert_equal(length1, length2)
 	time1=punit(2,'minutes')
 	time2=punit(120, 'seconds')
+	ns.assert_equal(length1, length2)
 	ns.assert_equal(time1,time2)
+	ns.assert_equal(1,punit(1))
+	ns.assert_not_equal(length1,time1)
 	
 def test_raises():
 	ns.assert_raises(ValueError, punit, 1, "abc")
