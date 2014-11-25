@@ -45,11 +45,21 @@ class punit(object):
 		self.unit=unit_dict
 
 	def __eq__(self,other):
-		if type(other)==punit:
-			if self.coeff==other.coeff and self.unit==other.unit:
-				return True
-			else: return False
-		else: raise ValueError("can only compare punit with punit")
+		if type(other)!=punit:
+			other=punit(other)
+		#check for different units, make sure exponent is 0, so it doesn't matter
+		first_units=set(self.unit.keys())
+		second_units=set(other.unit.keys())
+		set_diff_units=first_units.difference(second_units)
+		coeff_match=self.coeff==other.coeff and self.unit==other.unit
+		#check that units are the same
+		for key in set_diff_units:
+			if key in self.unit.keys():
+				if self.unit[key]!=0: return False			
+			elif key in other.unit.keys():
+				if other.unit[key]!=0: return False
+			else: raise LookupError("not able to find mismatched units")
+		if coeff_match: return True
 
 	def __mul__(self,other):
 		if type(other)!=punit:
@@ -73,10 +83,21 @@ class punit(object):
 	def __add__(self,other):
 		if type(other)!=punit:
 			other=punit(other)
-		if set(self.unit.keys()) == set(other.unit.keys()):
-			result=self
-			result.coeff=self.coeff+other.coeff
-		else: raise ValueError("can not add different units together")
+		first_units=set(self.unit.keys())
+		second_units=set(other.unit.keys())
+		set_diff_units=first_units.difference(second_units)
+		result=punit(0)
+		result.coeff=self.coeff+other.coeff
+		#check that units are the same
+		for key in set_diff_units:
+			if key in self.unit.keys():
+				if self.unit[key]!=0: 
+					raise ValueError ("can not add different units together")			
+			elif key in other.unit.keys():
+				if other.unit[key]!=0 :
+					raise ValueError ("can not add different units together")	
+			else: raise LookupError("not able to find mismatched units")
+		result.units=self.units	
 		return result
 		
 a=punit(2,'joules')

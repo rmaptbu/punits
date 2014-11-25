@@ -11,4 +11,3 @@ def test_unit_conversion():
 	
 def test_raises():
 	ns.assert_raises(ValueError, punit, 1, "abc")
-	ns.assert_raises(ValueError, lambda a,b: a==b, punit(1,'meter'), 1)
